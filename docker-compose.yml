@@ -19,3 +19,7 @@ standardjenkins:
   - JAVA_HOME=/usr/lib/jvm/default-java
   - MAVEN_HOME=/usr/share/maven
   - SONAR_RUNNER_VERSION=2.4
+  - GIT_NAME='<Git User Name>'
+  - GIT_EMAIL='<Git Email Address>'
+  - GIT_PASSWORD='<Git Password>'
+

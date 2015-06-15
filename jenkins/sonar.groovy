@@ -1,6 +1,7 @@
 /**
  * Created by carlosfrias on 6/10/15.
  */
+
 configPrefixMessage = "CUSTOM CONFIGURATION"
 
 println "$configPrefixMessage: Configuring Sonar"
