@@ -4,14 +4,16 @@
 configPrefixMessage = "CUSTOM CONFIGURATION"
 
 println "$configPrefixMessage: Configuring Git"
+import jenkins.model.Jenkins
+import hudson.tools.*
 import hudson.plugins.git.*
 
 descriptor = Jenkins.instance.getDescriptorByType(hudson.plugins.git.GitSCM.DescriptorImpl.class)
 println "$configPrefixMessage: Configuring GitSCM..."
 
 println "$configPrefixMessage: Setting global git properties..."
-descriptor.globalConfigName = "Carlos Frias"
-descriptor.globalConfigEmail = "carlos.frias.01@gmail.com"
+descriptor.globalConfigName = System.env.GIT_NAME
+descriptor.globalConfigEmail = System.env.GIT_EMAIL
 descriptor.createAccountBasedOnEmail = false
 
 
