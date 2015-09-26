@@ -9,7 +9,5 @@ ssh-credentials:1.11
 promoted-builds:2.21
 token-macro:1.10
 parameterized-trigger:2.4
-
-
-# sonar:2.2.1
-# deploy:1.10
+sonar:2.2.1
+deploy:1.10

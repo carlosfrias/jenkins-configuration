@@ -1,8 +1,10 @@
-# sonarqube:
-#   image: sonarqube:5.1
-#   ports:
-#   - "9000:9000"
-#   - "9092:9092"
+sonarqube:
+  image: sonarqube:5.1
+  ports:
+  - "9000:9000"
+  - "9092:9092"
+  links:
+  - sonarmysql:db
 jenkinscore:
   build: jenkins/jenkinscore
   command: shutdown -h now
@@ -10,8 +12,13 @@ jenkins:
   build: jenkins
   ports:
   - "8080:8080"
-#  - "5000:5000"
-#  links:
-#  - sonarqube
+  - "5000:5000"
+  links:
+  - sonarqube:sonarqube
+  - sonarmysql:sonarmysql
   volumes:
   - /var/jenkins_home
+sonarmysql:
+ image: tpires/sonar-mysql
+ ports:
+ - "3306:3306"
