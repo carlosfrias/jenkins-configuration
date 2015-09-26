@@ -1,21 +1,16 @@
 FROM jenkinsconfiguration_jenkinscore
 
-#################################################
-# Moved into jenkinscore to speed up builds
-# Install additional tools
-#USER root
-#RUN apt-get update && apt-get install -y maven
-# Moved into jenkinscore to speed up builds
-#################################################
-
 # Change back to the jenkins user
 USER jenkins
+COPY ssh/ /usr/share/jenkins/ref/.ssh
+
+# Add initializtion configuration
+COPY initialization/ /usr/share/jenkins/ref/initialization
+COPY initialization/init.groovy /usr/share/jenkins/ref/init.groovy
 
 # Add plugin installer as jenkins user
-COPY plugins.txt /usr/share/jenkins/plugins.txt
+COPY initialization/plugins.txt /usr/share/jenkins/plugins.txt
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
 
-# Add sonar configuration
-COPY init.groovy /usr/share/jenkins/ref/init.groovy
-COPY sonar.groovy /usr/share/jenkins/ref/sonar.groovy
-
+CMD ["/usr/local/bin/jenkins.sh"]
+WORKDIR $JENKINS_HOME

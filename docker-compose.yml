@@ -5,17 +5,12 @@ sonarqube:
   - "9092:9092"
 jenkinscore:
   build: jenkins/jenkinscore
-
-standardjenkins:
+jenkins:
   build: jenkins
   ports:
   - "8080:8080"
-  - "5000:5000"
-  links:
-  - sonarqube
+#  - "5000:5000"
+#  links:
+#  - sonarqube
   volumes:
-  - jenkins/jenkins_volume:/var/jenkins_home
-  environment:
-  - JAVA_HOME=/usr/lib/jvm/default-java
-  - MAVEN_HOME=/usr/share/maven
-  - SONAR_RUNNER_VERSION=2.4
+  - /var/jenkins_home

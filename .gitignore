@@ -1,6 +1,8 @@
+.DS_Store
 .idea
 *.iml
 jenkins_home
 jenkinsci
 volume_test
 jenkins_volume
+ssh

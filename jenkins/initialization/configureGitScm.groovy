@@ -4,6 +4,10 @@
 configPrefixMessage = "CUSTOM CONFIGURATION"
 
 println "$configPrefixMessage: Configuring Git"
+import jenkins.*
+import jenkins.model.*
+import hudson.*
+import hudson.model.*
 import hudson.plugins.git.*
 
 descriptor = Jenkins.instance.getDescriptorByType(hudson.plugins.git.GitSCM.DescriptorImpl.class)
