@@ -1,2 +1,2 @@
 # jenkins-configuration
-Configure orchestrated docker based jenkins deployment.
+Quickly create a development architecture with a basic Jenkins configuration that is can be built upon. 
