@@ -1,10 +1,11 @@
-sonarqube:
-  image: sonarqube:5.1
-  ports:
-  - "9000:9000"
-  - "9092:9092"
+# sonarqube:
+#   image: sonarqube:5.1
+#   ports:
+#   - "9000:9000"
+#   - "9092:9092"
 jenkinscore:
   build: jenkins/jenkinscore
+  command: shutdown -h now
 jenkins:
   build: jenkins
   ports:
