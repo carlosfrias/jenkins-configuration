@@ -6,3 +6,8 @@ jenkinsci
 volume_test
 jenkins_volume
 ssh
+id_rsa
+known_hosts
+jenkins_data
+m2
+job-dsl

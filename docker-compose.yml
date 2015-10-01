@@ -1,10 +1,3 @@
-sonarqube:
-  image: sonarqube:5.1
-  ports:
-  - "9000:9000"
-  - "9092:9092"
-  links:
-  - sonarmysql:db
 jenkinscore:
   build: jenkins/jenkinscore
   command: shutdown -h now
@@ -15,10 +8,31 @@ jenkins:
   - "5000:5000"
   links:
   - sonarqube:sonarqube
-  - sonarmysql:sonarmysql
+  - postgresql:sonardb
+  environment:
+  - SONARQUBE_JDBC_USERNAME=admin
+  - SONARQUBE_JDBC_PASSWORD=admin
   volumes:
-  - /var/jenkins_home
-sonarmysql:
- image: tpires/sonar-mysql
- ports:
- - "3306:3306"
+  - ./jenkins/jenkins_home:/var/jenkins_home
+sonarqube:
+  build: sonar
+  ports:
+  - "9000:9000"
+  environment:
+  - SONARQUBE_JDBC_USERNAME=admin
+  - SONARQUBE_JDBC_PASSWORD=admin
+  links:
+  - postgresql:db
+  volumes:
+  - ./sonarqube/sonarqube/data:/opt/sonarqube/data
+  - ./sonarqube/sonarqube/extensions:/opt/sonarqube/extensions
+postgresql:
+  image: postgres:9.3
+  ports:
+  - "5432:5432"
+  environment:
+  - POSTGRES_USER=admin
+  - POSTGRES_PASSWORD=admin
+  - POSTGRES_DB=sonar
+  volumes:
+  - ./postgres/postgres/data:/var/lib/postgresql/data

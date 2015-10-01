@@ -1,6 +1,7 @@
 /**
  * Created by carlosfrias on 6/10/15.
  */
+
 configPrefixMessage = "CUSTOM CONFIGURATION"
 
 println "$configPrefixMessage: Configuring Sonar"
@@ -11,13 +12,13 @@ import hudson.tools.*
 
 println "$configPrefixMessage: Loading Sonar properties..."
 prop = [:]
-prop.name = "Sonarqube"
+prop.name = System.env.SONARQUBE_NAME
 prop.disabled = false
 prop.serverUrl = "http://${System.env.SONARQUBE_PORT_9000_TCP_ADDR}:${System.env.SONARQUBE_PORT_9000_TCP_PORT}"
-prop.databaseUrl = "jdbc:postgresql://sonardb:5432/sonar"
-prop.databaseLogin = System.env.SONARQUBE_JDBC_USERNAME
-prop.databasePassword = System.env.SONARQUBE_JDBC_PASSWORD
-//prop.sonarRunnerVersion = "${System.env.SONAR_RUNNER_VERSION}"
+prop.databaseUrl = System.env.SONARQUBE_ENV_JDBC_URL
+prop.databaseLogin = System.env.SONARQUBE_ENV_JDBC_USERNAME
+prop.databasePassword = System.env.SONARQUBE_ENV_JDBC_PASSWORD
+prop.sonarRunnerVersion = System.env.SONAR_RUNNER_VERSION
 //prop.mojoVersion = null
 //prop.additionalProperties = null
 //prop.triggers = null

@@ -13,10 +13,10 @@ def load = { script ->
     }
 }
 scripts = [
-        'configureGitScm' //,
-        //'configureBasicSshUserPrivateKeyCredentials',
-        //'configureJava',
-        //'configureMaven',
-//        'sonar'
+        'configureGitScm',
+        'configureBasicSshUserPrivateKeyCredentials',
+        'configureJava',
+        'configureMaven',
+        'configureSonar'
 ]
 scripts.each { load(it) }

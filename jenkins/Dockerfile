@@ -4,9 +4,12 @@ FROM jenkinsconfiguration_jenkinscore
 USER jenkins
 COPY ssh/ /usr/share/jenkins/ref/.ssh
 
-# Add initializtion configuration
+# Add initialization configuration
 COPY initialization/ /usr/share/jenkins/ref/initialization
 COPY initialization/init.groovy /usr/share/jenkins/ref/init.groovy
+
+# Add private libraries
+COPY m2/ /usr/share/jenkins/ref/.m2
 
 # Add plugin installer as jenkins user
 COPY initialization/plugins.txt /usr/share/jenkins/plugins.txt
