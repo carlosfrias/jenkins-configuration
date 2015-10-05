@@ -1,5 +1,5 @@
-from dockerfile/java:oracle-java7
-maintainer Baev Dmitry
+FROM dockerfile/java:oracle-java7
+MAINTAINER Baev Dmitry
 
 VOLUME /opt/sonar
 
