@@ -56,7 +56,7 @@ runner = new SonarRunnerInstallation(prop?.name, null, [property])
 println "$configPrefixMessage: Obtaining the SonarRunnerInstallation Descriptor instance..."
 descriptor = Jenkins.instance.getDescriptorByType(SonarRunnerInstallation.DescriptorImpl.class)
 
-println "$configPrefixMessage: Saving SonarRnnerInstallation..."
+println "$configPrefixMessage: Saving SonarRunnerInstallation..."
 descriptor.installations = runner
 descriptor.save()
 

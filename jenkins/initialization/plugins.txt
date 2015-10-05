@@ -9,7 +9,7 @@ promoted-builds:2.21
 token-macro:1.10
 parameterized-trigger:2.4
 job-dsl:1.38
-#cloudbees-folder:4.4
+cloudbees-folder:4.1
 #credentials:1.9.4
 #vsphere-cloud:1.1.11
 #config-file-provider:2.8.1
@@ -18,3 +18,11 @@ junit:1.9
 sonar:2.2.1
 deploy:1.10
 maven-plugin:2.12
+pmd:3.42
+analysis-core:1.73
+findbugs:4.62
+violations:0.7.11
+cobertura:1.9.7
+dashboard-view:2.4
+checkstyle:3.43
+analysis-collector:1.45

@@ -38,9 +38,10 @@ VOLUME ["$SONARQUBE_HOME/data", "$SONARQUBE_HOME/extensions"]
 
 WORKDIR $SONARQUBE_HOME
 
-ADD http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/sonar-cobertura-plugin/1.6.2/sonar-cobertura-plugin-1.6.2.jar /opt/sonarqube/extensions/plugins/
+ADD http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-java-plugin/3.3/sonar-java-plugin-3.3.jar /opt/sonarqube/extensions/plugins/
 ADD http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/sonar-groovy-plugin/1.1/sonar-groovy-plugin-1.1.jar /opt/sonarqube/extensions/plugins/
 ADD https://github.com/racodond/sonar-jproperties-plugin/releases/download/1.3/sonar-jproperties-plugin-1.3.jar /opt/sonarqube/extensions/plugins/
+ADD http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/sonar-cobertura-plugin/1.6.2/sonar-cobertura-plugin-1.6.2.jar /opt/sonarqube/extensions/plugins/
 ADD http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-checkstyle-plugin/2.1.1/sonar-checkstyle-plugin-2.1.1.jar /opt/sonarqube/extensions/plugins/
 ADD http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/2.3/sonar-findbugs-plugin-2.3.jar /opt/sonarqube/extensions/plugins/
 ADD http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-pmd-plugin/2.3/sonar-pmd-plugin-2.3.jar /opt/sonarqube/extensions/plugins/

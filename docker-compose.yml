@@ -1,19 +1,13 @@
-jenkinscore:
-  build: jenkins/jenkinscore
-  command: shutdown -h now
-jenkins:
-  build: jenkins
+postgresql:
+  image: postgres:9.3
   ports:
-  - "8080:8080"
-  - "5000:5000"
-  links:
-  - sonarqube:sonarqube
-  - postgresql:sonardb
+  - "5432:5432"
   environment:
-  - SONARQUBE_JDBC_USERNAME=admin
-  - SONARQUBE_JDBC_PASSWORD=admin
+  - POSTGRES_USER=admin
+  - POSTGRES_PASSWORD=admin
+  - POSTGRES_DB=sonar
   volumes:
-  - ./jenkins/jenkins_home:/var/jenkins_home
+  - /var/lib/postgresql/data
 sonarqube:
   build: sonar
   ports:
@@ -26,13 +20,25 @@ sonarqube:
   volumes:
   - ./sonarqube/sonarqube/data:/opt/sonarqube/data
   - ./sonarqube/sonarqube/extensions:/opt/sonarqube/extensions
-postgresql:
-  image: postgres:9.3
-  ports:
-  - "5432:5432"
-  environment:
-  - POSTGRES_USER=admin
-  - POSTGRES_PASSWORD=admin
-  - POSTGRES_DB=sonar
+jenkinscore:
+  build: jenkins/jenkinscore
+  command: shutdown -h now
+jenkins_data:
+  build: jenkins
   volumes:
-  - ./postgres/postgres/data:/var/lib/postgresql/data
+  - /var/jenkins_home
+jenkins:
+  build: jenkins
+  ports:
+  - "8080:8080"
+  - "5000:5000"
+  links:
+  - sonarqube:sonarqube
+  - postgresql:sonardb
+  environment:
+  - SONARQUBE_JDBC_USERNAME=admin
+  - SONARQUBE_JDBC_PASSWORD=admin
+  volumes_from:
+  - jenkins_data
+#  volumes:
+#  - ./jenkins/jenkins_home:/var/jenkins_home

@@ -1,7 +1,7 @@
+import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
 import com.cloudbees.plugins.credentials.*
 import com.cloudbees.plugins.credentials.domains.*
 import com.cloudbees.plugins.credentials.impl.*
-import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
 
 configPrefixMessage = "CUSTOM CONFIGURATION"
 println "$configPrefixMessage: Configuring BasicSshPrivateKeyCredentials..."
@@ -9,13 +9,14 @@ println "$configPrefixMessage: Configuring BasicSshPrivateKeyCredentials..."
 println "$configPrefixMessage: Creating BasicSshPrivateKeyCredentials..."
 
 sshPem = "${System.env.'JENKINS_HOME'}/.ssh/id_rsa"
-if(new File(sshPem).exists()){
+if (new File(sshPem).exists()) {
+    new AntBuilder().chmod(perm: 400, file: sshPem)
     privateKeySource = new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource(sshPem);
 
     systemCredProvider = SystemCredentialsProvider.instance
     sshCredentials = new BasicSSHUserPrivateKey(
             CredentialsScope.GLOBAL,
-            null,
+            "LocalUser",
             'git',
             privateKeySource,
             null,

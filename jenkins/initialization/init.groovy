@@ -17,6 +17,7 @@ scripts = [
         'configureBasicSshUserPrivateKeyCredentials',
         'configureJava',
         'configureMaven',
-        'configureSonar'
+        'configureSonar',
+        'configureJobSeeder'
 ]
 scripts.each { load(it) }
